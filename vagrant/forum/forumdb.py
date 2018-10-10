@@ -9,7 +9,9 @@ def get_posts():
   db = psycopg2.connect(database=DBNAME)
   c = db.cursor()
   c.execute("select content, time from posts order by time desc")
+  c.execute("delete from posts where content = 'ded'")
   posts = c.fetchall()
+  db.commit()
   db.close()
   return posts
 

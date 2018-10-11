@@ -18,6 +18,5 @@ def add_post(content):
   db = psycopg2.connect(database=DBNAME)
   c = db.cursor()
   c.execute("insert into posts values (%s)", (bleach.clean(content),))  # good
-  c.execute("delete from posts where content like 'ded'")
   db.commit()
   db.close()
